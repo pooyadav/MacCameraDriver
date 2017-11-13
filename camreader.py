@@ -16,5 +16,5 @@ if a != -1 and b != -1:
     jpg1 = btemp[a:b + 2]
 
 
-with open("/tmp/frame.jpg", "wb") as f:
+with open("./frame.jpg", "wb") as f:
     f.write(jpg1)

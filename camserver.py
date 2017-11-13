@@ -1,13 +1,16 @@
+#!/usr/bin/bash
+# -*- coding: utf-8 -*- 
+
 import cv2
 import os
 import base64
 import numpy as np
 from flask import Flask,  Response
 
-cap = cv2.VideoCapture(0)
+
 
 app = Flask(__name__)
-
+cap = cv2.VideoCapture(0)
 
 @app.route('/')
 def index():
@@ -15,6 +18,7 @@ def index():
 
 @app.route('/video_feed')
 def video_feed():
+
     print("inside index")
     success, frame = cap.read()
     #print(frame)
@@ -22,7 +26,6 @@ def video_feed():
     byteframe = jpeg.tobytes()
     return Response(b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' + byteframe + b'\r\n\r\n',
                     mimetype='multipart/x-mixed-replace; boundary=frame')
-
 
 if __name__ == '__main__':
 
